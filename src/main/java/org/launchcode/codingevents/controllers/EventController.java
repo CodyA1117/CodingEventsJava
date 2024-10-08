@@ -15,6 +15,21 @@ import java.util.List;
 @Controller
 @RequestMapping("events")
 public class EventController {
+    @GetMapping("edit/{eventID}")
+    public String displayEditForm(Model model, @PathVariable int eventId) {
+        Event event = EventData.getById(eventId);
+        model.addAttribute("event",event);
+        model.addAttribute("title", "Edit Event" + event.getName() + "(id=" + event.getId() + ")");
+        return "events/edit";
+
+    }
+    @PostMapping("edit")
+    public String processEditForm(int eventId, String name, String description) {
+        Event eventToEdit = EventData.getById(eventId);
+        eventToEdit.setName(name);
+        eventToEdit.setDescription(description);
+        return "redirect:/events";
+    }
 
     @GetMapping
     public String displayAllEvents(Model model) {
