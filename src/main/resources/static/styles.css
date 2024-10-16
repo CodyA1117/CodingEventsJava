@@ -22,3 +22,6 @@ tbody tr:nth-child(even) {
 h1 {
     text-align: center;
 }
+.error {
+    color: red;
+}
