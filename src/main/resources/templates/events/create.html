@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="fragments :: head"></head>
 <body class="container">
 
@@ -7,44 +7,50 @@
 
 <form method="post" th:action="@{/events/create}" th:object="${event}">
     <div class="form-group">
-        <label>Name
-            <input th:field="*{name}" class="form-control">
-        </label>
+        <label for="name">Name:</label>
+        <input type="text" id="name" th:field="*{name}" class="form-control">
         <p class="error" th:errors="*{name}"></p>
     </div>
     <div class="form-group">
-        <label>Description
-            <input th:field="*{description}" class="form-control">
-        </label>
+        <label for="description">Description:</label>
+        <input type="text" id="description" th:field="*{description}" class="form-control">
         <p class="error" th:errors="*{description}"></p>
     </div>
     <div class="form-group">
-        <label>Contact Email
-            <input th:field="*{contactEmail}" class="form-control">
-        </label>
+        <label for="contactEmail">Contact Email:</label>
+        <input type="email" id="contactEmail" th:field="*{contactEmail}" class="form-control">
         <p class="error" th:errors="*{contactEmail}"></p>
     </div>
     <div class="form-group">
+        <label for="type">Type:</label>
+        <select id="type" th:field="*{type}">
+            <option th:each="type : ${types}"
+                    th:value="${type}"
+                    th:text="${type.displayName}">
+            </option>
+        </select>
+    </div>
+    <div class="form-group">
         <label for="location">Location:</label>
-        <input type="text" id="location" name="location" th:field="*{location}" class="form-control" />
+        <input type="text" id="location" th:field="*{location}" class="form-control" />
         <div th:if="${#fields.hasErrors('location')}" th:errors="*{location}">Location Error</div>
     </div>
 
     <div class="form-group">
         <label for="requiresRegistration">Requires Registration:</label>
-        <input type="checkbox" id="requiresRegistration" name="requiresRegistration" th:field="*{requiresRegistration}" class="form-check-input" />
+        <input type="checkbox" id="requiresRegistration" th:field="*{requiresRegistration}" class="form-check-input" />
         <div th:if="${#fields.hasErrors('requiresRegistration')}" th:errors="*{requiresRegistration}">Requires Registration Error</div>
     </div>
 
     <div class="form-group">
         <label for="numberOfAttendees">Number of Attendees:</label>
-        <input type="number" id="numberOfAttendees" name="numberOfAttendees" th:field="*{numberOfAttendees}" class="form-control" />
+        <input type="number" id="numberOfAttendees" th:field="*{numberOfAttendees}" class="form-control" />
         <div th:if="${#fields.hasErrors('numberOfAttendees')}" th:errors="*{numberOfAttendees}">Number of Attendees Error</div>
     </div>
 
     <div class="form-group">
         <label for="duration">Duration (hours):</label>
-        <input type="number" id="duration" name="duration" th:field="*{duration}" class="form-control" />
+        <input type="number" id="duration" th:field="*{duration}" class="form-control" />
         <div th:if="${#fields.hasErrors('duration')}" th:errors="*{duration}">Duration Error</div>
     </div>
 

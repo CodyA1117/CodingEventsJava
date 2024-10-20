@@ -4,9 +4,12 @@ import jakarta.validation.constraints.*;
 
 import java.util.Objects;
 
+
+
 /**
  * Created by Chris Bay
  */
+
 public class Event {
 
     private int id;
@@ -22,6 +25,8 @@ public class Event {
     @NotBlank(message = "Email is required")
     @Email(message = "Invalid email. Try again.")
     private String contactEmail;
+
+    private EventType type;
 
     @NotBlank(message = "Location cannot be left blank.")
     private String location;
@@ -40,11 +45,12 @@ public class Event {
 
 
 
-    public Event(String name, String description, String contactEmail, String location, int numberOfAttendees, int duration) {
+    public Event(String name, String description, String contactEmail, EventType type,  String location, int numberOfAttendees, int duration) {
         this();
         this.name = name;
         this.description = description;
         this.contactEmail = contactEmail;
+        this.type = type;
         this.location = location;
         this.numberOfAttendees = numberOfAttendees;
         this.duration = duration;
@@ -116,8 +122,13 @@ public class Event {
         this.duration = duration;
     }
 
+    public EventType getType() {
+        return type;
+    }
 
-
+    public void setType(EventType type) {
+        this.type = type;
+    }
 
     @Override
     public String toString() {
