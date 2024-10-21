@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Create Category</title>
+    <link rel="stylesheet" th:href="@{/styles.css}" />
+</head>
+<body>
+<h1 th:text="${title}"></h1>
+<nav>
+    <a href="/events">All Events</a>
+    <a href="/events/create">Create Event</a>
+    <a href="/events/delete">Delete Events</a>
+    <a href="/eventCategories">All Categories</a>
+    <a href="/eventCategories/create">Create Category</a>
+</nav>
+<form th:action="@{/eventCategories/create}" th:object="${eventCategory}" method="post">
+    <div>
+        <label for="name">Name</label>
+        <input type="text" id="name" th:field="*{name}" />
+    </div>
+    <div>
+        <button type="submit">Create</button>
+    </div>
+</form>
+</body>
+</html>
