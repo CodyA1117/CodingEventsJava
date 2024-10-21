@@ -14,11 +14,9 @@ import jakarta.persistence.Entity;
  * Created by Chris Bay
  */
 @Entity
-public class Event {
+public class Event extends AbstractEntity {
 
-    @Id
-    @GeneratedValue
-    private int id;
+
 
 
     @NotBlank(message = "Name is required")
@@ -91,9 +89,7 @@ public class Event {
         this.contactEmail = contactEmail;
     }
 
-    public int getId() {
-        return id;
-    }
+
 
     public String getLocation(){
         return location;
@@ -140,16 +136,5 @@ public class Event {
         return name;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Event event = (Event) o;
-        return id == event.id;
-    }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(id);
     }
-}
