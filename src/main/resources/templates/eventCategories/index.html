@@ -1,29 +1,21 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <title>All Categories</title>
-    <link rel="stylesheet" th:href="@{/styles.css}" />
-</head>
-<body>
-<h1 th:text="${title}"></h1>
-<nav>
-    <a href="/events">All Events</a>
-    <a href="/events/create">Create Event</a>
-    <a href="/events/delete">Delete Events</a>
-    <a href="/eventCategories">All Categories</a>
-    <a href="/eventCategories/create">Create Category</a>
-</nav>
-<table>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="~{fragments :: head}"></head>
+<body class="container">
+
+<header th:replace="~{fragments :: header}"></header>
+
+<table class="table table-striped">
     <thead>
     <tr>
         <th>Category Name</th>
     </tr>
     </thead>
-    <tbody>
     <tr th:each="category : ${categories}">
-        <td th:text="${category.name}"></td>
+        <td><a th:text="${category.name}" th:href="'/events?categoryId=' + ${category.id}"></a></td>
     </tr>
-    </tbody>
+
 </table>
+
 </body>
 </html>
